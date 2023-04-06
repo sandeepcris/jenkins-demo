@@ -19,11 +19,7 @@ pipeline {
             sh '''
             /kaniko/executor --dockerfile `pwd`/Dockerfile \
                              --context `pwd` \
-                             --destination=sandeepcris/myweb:${BUILD_NUMBER} \ 
-                             --build-arg "http_proxy=${http_proxy}" \
-                             --build-arg "https_proxy=${http_proxy}" \
-                             --build-arg "HTTP_PROXY=${http_proxy}" \
-                             --build-arg "HTTPS_PROXY=${http_proxy}"
+                             --destination=sandeepcris/myweb:${BUILD_NUMBER} 
             '''
           }
         }
