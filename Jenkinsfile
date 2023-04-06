@@ -20,8 +20,6 @@ pipeline {
             /kaniko/executor --dockerfile `pwd`/Dockerfile \
                              --context `pwd` \
                              --destination=sandeepcris/myweb:${BUILD_NUMBER} 
-                             --build-arg http_proxy="10.64.26.77:3128"
-                             --build-arg https_proxy="10.64.26.77:3128"
             '''
           }
         }
