@@ -11,6 +11,11 @@ spec:
     tty: true    
   - name: kaniko
     image: gcr.io/kaniko-project/executor:debug
+    env:
+    - name: http_proxy
+      value: "http://10.64.26.77:3128"
+    - name: https_proxy
+      value: "http://10.64.26.77:3128"
     command:
     - /busybox/cat
     tty: true
