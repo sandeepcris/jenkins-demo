@@ -26,18 +26,12 @@ pipeline {
       }
     }
 
-    stage('Deploy App to Kubernetes') {     
-      steps {
-        container('kubectl') {
-          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
-            sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" myweb.yaml'
-            sh 'kubectl version --short'
-            sh 'kubectl get nodes'
-            sh 'kubectl apply -f myweb.yaml'
-          }
+    
+    stage('Trigger ManifestUpdate') {
+                echo "triggering updatemanifestjob"
+                build job: 'updatemanifest-demo', parameters: [string(name: 'DOCKERTAG', value: env.BUILD_NUMBER)]
         }
-      }
-    }
+
   
   }
 }
